@@ -56,3 +56,11 @@
   --color-surface-light: #ffffff;
   --color-surface-dark: #1f2937; /* Untuk product card gelap */
 }
+
+.header-nav {
+  @apply sticky top-0 z-50 bg-white/70 backdrop-blur-md border-b border-amber-100/50;
+}
+
+.nav-link {
+  @apply text-text-primary text-sm font-semibold hover:text-primary-500 transition-colors;
+}

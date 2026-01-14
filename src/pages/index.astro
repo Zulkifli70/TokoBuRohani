@@ -1,6 +1,10 @@
 ---
 import BaseLayout from "../layout/BaseLayout.astro";
+import Header from "../components/Header.astro";
+
 const pageTitle = "Toko Bu Rohani";
 ---
 
-<BaseLayout pageTitle={pageTitle}> <h1>Halo</h1> </BaseLayout>
+<BaseLayout pageTitle={pageTitle}>
+  <Header />
+</BaseLayout>
