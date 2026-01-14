@@ -57,6 +57,12 @@
   --color-surface-dark: #1f2937; /* Untuk product card gelap */
 }
 
+@layer base {
+  body {
+    @apply bg-amber-50 text-slate-900;
+  }
+}
+
 .header-nav {
   @apply sticky top-0 z-50 bg-white/70 backdrop-blur-md border-b border-amber-100/50;
 }
