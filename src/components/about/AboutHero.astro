@@ -2,6 +2,59 @@
 import BaseLayout from "../../layout/BaseLayout.astro";
 ---
 
-<BaseLayout>
-  <h1>About</h1>
-</BaseLayout>
+<div class="px-4 md:px-20 lg:px-40 flex flex-1 justify-center py-12 md:py-20">
+  <div class="layout-content-container flex flex-col max-w-[960px] flex-1">
+    <div class="@container">
+      <div
+        class="flex flex-col gap-10 px-4 @[864px]:flex-row @[864px]:items-center"
+      >
+        <div class="flex flex-col gap-6 flex-1 @[864px]:justify-center">
+          <div class="flex flex-col gap-4 text-left">
+            <span
+              class="text-primary-500 font-bold tracking-widest text-xs uppercase"
+              >Cerita Kami</span
+            >
+            <h1
+              class="text-[#111816] text-4xl font-black leading-tight tracking-[-0.033em] @[480px]:text-5xl"
+            >
+              Melayani Tetangga Sejak 2009
+            </h1>
+            <div class="w-16 h-1 bg-accent-400 rounded-full"></div>
+            <p
+              class="text-[#5f8c7d] text-base font-normal leading-relaxed @[480px]:text-lg"
+            >
+              Berawal dari sebuah kios kecil di teras rumah, Toko Ibu didirikan
+              dengan satu niat sederhana: memastikan setiap tetangga mendapatkan
+              bahan pokok berkualitas dengan harga yang jujur.
+            </p>
+            <p class="text-[#5f8c7d] text-sm font-normal leading-relaxed">
+              Selama hampir dua dekade, kami telah menyaksikan generasi
+              berganti, namun komitmen kami tetap sama. Kami bukan sekadar toko
+              kelontong; kami adalah bagian dari cerita keseharian Anda,
+              menyediakan segala kebutuhan dari beras pilihan hingga senyuman
+              ramah di pagi hari.
+            </p>
+          </div>
+        </div>
+        <div class="w-full relative @[864px]:w-1/2">
+          <div
+            class="absolute -top-4 -left-4 w-24 h-24 bg-amber-accent/20 rounded-full blur-2xl"
+          >
+          </div>
+          <div
+            class="absolute -bottom-4 -right-4 w-32 h-32 bg-primary/10 rounded-full blur-2xl"
+          >
+          </div>
+          <div
+            class="relative w-full aspect-[4/5] bg-center bg-no-repeat bg-cover rounded-2xl shadow-2xl border-8 border-white"
+            data-alt="Store owner smiling in front of traditional grocery shop"
+            style="
+                      background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDtB7ZDOH92CFU2Md-MuIynhSusqcZUdtOkSXFdcqFPbc5ZxTtRpdX0UH-AEkl54kxMHwbP078V5Q61B2XITNTyPA0GdgpzvTF6aBoPZo3Z-opXHUJnuE_-1YA8BvoF2DPHk8i0LbSD25HakpW85SykFe8xAyqA-s28wafSnBrjCaVZ5so_OGei61F1SHZ8uRmUv9aWf6rMsaiScXBSKaPfinInBQkaWmDYGPcOA3Fu7iY7fVLFz6YlTUgXkaIMaSQfjSsEihJ6ogm8');
+                    "
+          >
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
