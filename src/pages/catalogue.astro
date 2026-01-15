@@ -15,5 +15,23 @@ import ProductGrid from "../components/catalogue/ProductGrid.astro";
     </div>
     <SearchBar />
     <ProductGrid />
+    <div class="flex justify-center mt-12 mb-8">
+      <button
+        class="flex items-center gap-2 px-8 py-3 bg-primary-500 rounded-xl font-bold hover:bg-primary hover:text-white transition-all shadow-sm"
+      >
+        Tampilkan Lebih Banyak
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+          class="size-6"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M12.53 16.28a.75.75 0 0 1-1.06 0l-7.5-7.5a.75.75 0 0 1 1.06-1.06L12 14.69l6.97-6.97a.75.75 0 1 1 1.06 1.06l-7.5 7.5Z"
+            clip-rule="evenodd"></path>
+        </svg>
+      </button>
+    </div>
   </div>
 </BaseLayout>
