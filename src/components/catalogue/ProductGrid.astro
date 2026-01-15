@@ -1,0 +1,17 @@
+---
+import ProductCard from "./ProductCard.astro";
+import { items } from "../../data/item";
+---
+
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+  {
+    items.map((item) => (
+      <ProductCard
+        name={item.name}
+        tag={item.tag}
+        imgSrc={item.imgSrc}
+        imgAlt={item.imgAlt}
+      />
+    ))
+  }
+</div>

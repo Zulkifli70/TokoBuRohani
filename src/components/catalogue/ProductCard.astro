@@ -1,0 +1,30 @@
+---
+const { name, tag, imgSrc, imgAlt } = Astro.props;
+---
+
+<div
+  class="group bg-white rounded-xl overflow-hidden border
+border-[#eeece8] hover:shadow-xl transition-all
+duration-300"
+>
+  <div
+    class="aspect-square bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
+    data-alt={imgAlt}
+    style={{
+      backgroundImage: `url('${imgSrc}')`,
+    }}
+  >
+  </div>
+  <div class="p-5">
+    <span
+      class="inline-block px-3 py-1 bg-primary-100 text-primary-500 text-[10px] uppercase font-bold tracking-widest rounded-full mb-2"
+      >{tag}</span
+    >
+    <h3 class="text-lg font-bold mb-1">{name}</h3>
+    <div class="flex items-center justify-between mt-4">
+      <span class="text-sm font-semibold text-[#897961] dark:text-primary"
+        >Harga Terjangkau</span
+      >
+    </div>
+  </div>
+</div>
