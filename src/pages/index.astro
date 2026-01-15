@@ -1,18 +1,14 @@
 ---
 import BaseLayout from "../layout/BaseLayout.astro";
-import Header from "../components/Header.astro";
 import Hero from "../components/Hero.astro";
 import HomeCatalogue from "../components/HomeCatalogue.astro";
 import HomeLocation from "../components/HomeLocation.astro";
-import Footer from "../components/Footer.astro";
 
 const pageTitle = "Toko Bu Rohani";
 ---
 
 <BaseLayout pageTitle={pageTitle}>
-  <Header />
   <Hero />
   <HomeCatalogue />
   <HomeLocation />
-  <Footer />
 </BaseLayout>
