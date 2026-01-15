@@ -1,7 +1,3 @@
----
-
----
-
 <div class="flex flex-col gap-6 mb-10">
   <div class="w-full">
     <label class="relative block group">
@@ -24,6 +20,7 @@
         </svg>
       </div>
       <input
+        id="searchInput"
         class="w-full h-14 pl-12 pr-4 bg-white border border-[#eeece8] rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all text-base placeholder:text-[#897961]"
         placeholder="Cari bumbu, jajanan, atau perlengkapan rumah..."
         type="text"
@@ -32,29 +29,109 @@
   </div>
   <div class="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
     <button
-      class="px-6 py-2 rounded-full bg-primary-500 text-white font-semibold text-sm shadow-md"
+      data-filter="semua"
+      class="filter-btn px-6 py-2 rounded-full bg-primary-500 text-white font-semibold text-sm shadow-md"
     >
       Semua
     </button>
     <button
-      class="px-6 py-2 rounded-full bg-white border border-[#eeece8] hover:border-primary text-sm font-medium transition-colors"
+      data-filter="bumbu"
+      class="filter-btn px-6 py-2 rounded-full bg-white border border-[#eeece8] hover:border-primary text-sm font-medium transition-colors"
     >
       Bumbu
     </button>
     <button
-      class="px-6 py-2 rounded-full bg-white border border-[#eeece8] hover:border-primary text-sm font-medium transition-colors"
+      data-filter="jajanan"
+      class="filter-btn px-6 py-2 rounded-full bg-white border border-[#eeece8] hover:border-primary text-sm font-medium transition-colors"
     >
       Jajanan
     </button>
     <button
-      class="px-6 py-2 rounded-full bg-white border border-[#eeece8] hover:border-primary text-sm font-medium transition-colors"
+      data-filter="rumah tangga"
+      class="filter-btn px-6 py-2 rounded-full bg-white border border-[#eeece8] hover:border-primary text-sm font-medium transition-colors"
     >
       Rumah Tangga
     </button>
     <button
-      class="px-6 py-2 rounded-full bg-white border border-[#eeece8] hover:border-primary text-sm font-medium transition-colors"
+      data-filter="minuman"
+      class="filter-btn px-6 py-2 rounded-full bg-white border border-[#eeece8] hover:border-primary text-sm font-medium transition-colors"
     >
       Minuman
     </button>
   </div>
 </div>
+
+<script>
+  // Ambil elemen-elemen yang dibutuhkan
+  const searchInput = document.getElementById(
+    "searchInput"
+  ) as HTMLInputElement;
+  const filterButtons = document.querySelectorAll(".filter-btn");
+  const productCards = document.querySelectorAll(".product-card");
+  const noResultsMessage = document.getElementById("noResults");
+
+  let currentFilter = "semua";
+  let currentSearch = "";
+
+  // Fungsi untuk filter dan search produk
+  function filterProducts() {
+    let visibleCount = 0; // Hitung berapa produk yang tampil
+
+    productCards.forEach((card) => {
+      const cardElement = card as HTMLElement;
+      const productName = cardElement.dataset.name?.toLowerCase() || "";
+      const productTag = cardElement.dataset.tag?.toLowerCase() || "";
+
+      // Cek apakah produk sesuai dengan search
+      const matchesSearch = productName.includes(currentSearch.toLowerCase());
+
+      // Cek apakah produk sesuai dengan filter
+      const matchesFilter =
+        currentFilter === "semua" || productTag === currentFilter;
+
+      // Tampilkan hanya jika sesuai dengan search DAN filter
+      if (matchesSearch && matchesFilter) {
+        cardElement.style.display = "block";
+        visibleCount++; // Tambah counter
+      } else {
+        cardElement.style.display = "none";
+      }
+    });
+
+    // Tampilkan/sembunyikan pesan "tidak ada produk"
+    if (noResultsMessage) {
+      if (visibleCount === 0) {
+        noResultsMessage.classList.remove("hidden"); // Tampilkan pesan
+      } else {
+        noResultsMessage.classList.add("hidden"); // Sembunyikan pesan
+      }
+    }
+  }
+
+  // Event listener untuk search input
+  searchInput.addEventListener("input", (e) => {
+    const target = e.target as HTMLInputElement;
+    currentSearch = target.value;
+    filterProducts();
+  });
+
+  // Event listener untuk filter buttons
+  filterButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const btnElement = button as HTMLElement;
+
+      // Update active state
+      filterButtons.forEach((btn) => {
+        btn.classList.remove("bg-primary-500", "text-white", "shadow-md");
+        btn.classList.add("bg-white", "border", "border-[#eeece8]");
+      });
+
+      btnElement.classList.remove("bg-white", "border", "border-[#eeece8]");
+      btnElement.classList.add("bg-primary-500", "text-white", "shadow-md");
+
+      // Update filter dan jalankan filter
+      currentFilter = btnElement.dataset.filter || "semua";
+      filterProducts();
+    });
+  });
+</script>

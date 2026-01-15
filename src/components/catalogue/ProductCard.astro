@@ -1,11 +1,12 @@
 ---
+// ProductCard.astro
 const { name, tag, imgSrc, imgAlt } = Astro.props;
 ---
 
 <div
-  class="group bg-white rounded-xl overflow-hidden border
-border-[#eeece8] hover:shadow-xl transition-all
-duration-300"
+  class="product-card group bg-white rounded-xl overflow-hidden border border-[#eeece8] hover:shadow-xl transition-all duration-300"
+  data-name={name}
+  data-tag={tag}
 >
   <div
     class="aspect-square bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
