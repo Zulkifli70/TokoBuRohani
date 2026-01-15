@@ -1,3 +1,7 @@
+---
+
+---
+
 <div class="flex flex-col gap-6 mb-10">
   <div class="w-full">
     <label class="relative block group">
@@ -87,7 +91,7 @@
 
   // Fungsi untuk filter dan search produk
   function filterProducts() {
-    let visibleCount = 0; // Hitung berapa produk yang tampil
+    let visibleCount = 0;
 
     productCards.forEach((card) => {
       const cardElement = card as HTMLElement;
@@ -104,7 +108,7 @@
       // Tampilkan hanya jika sesuai dengan search DAN filter
       if (matchesSearch && matchesFilter) {
         cardElement.style.display = "block";
-        visibleCount++; // Tambah counter
+        visibleCount++;
       } else {
         cardElement.style.display = "none";
       }
@@ -113,12 +117,24 @@
     // Tampilkan/sembunyikan pesan "tidak ada produk"
     if (noResultsMessage) {
       if (visibleCount === 0) {
-        noResultsMessage.classList.remove("hidden"); // Tampilkan pesan
+        noResultsMessage.classList.remove("hidden");
       } else {
-        noResultsMessage.classList.add("hidden"); // Sembunyikan pesan
+        noResultsMessage.classList.add("hidden");
       }
     }
+
+    // Reset pagination dan update tampilan
+    if ((window as any).resetPagination) {
+      (window as any).resetPagination();
+    }
   }
+
+  // Expose fungsi filterProducts untuk digunakan oleh komponen lain
+  (window as any).filterProducts = filterProducts;
+  (window as any).getCurrentFilter = () => ({
+    filter: currentFilter,
+    search: currentSearch,
+  });
 
   // Event listener untuk search input
   searchInput.addEventListener("input", (e) => {

@@ -17,7 +17,8 @@ import ProductGrid from "../components/catalogue/ProductGrid.astro";
     <ProductGrid />
     <div class="flex justify-center mt-12 mb-8">
       <button
-        class="flex items-center gap-2 px-8 py-3 bg-primary-500 rounded-xl font-bold hover:bg-primary hover:text-white transition-all shadow-sm"
+        id="loadMoreBtn"
+        class="flex items-center gap-2 px-8 py-3 bg-primary-500 text-white rounded-xl font-bold hover:bg-primary transition-all shadow-sm"
       >
         Tampilkan Lebih Banyak
         <svg
@@ -35,3 +36,111 @@ import ProductGrid from "../components/catalogue/ProductGrid.astro";
     </div>
   </div>
 </BaseLayout>
+
+<script>
+  // Konstanta untuk pagination
+  const ITEMS_PER_PAGE = 8;
+
+  // State untuk pagination
+  let currentlyShowing = ITEMS_PER_PAGE;
+
+  // Ambil semua elemen
+  const productItems = document.querySelectorAll(".product-item");
+  const loadMoreBtn = document.getElementById("loadMoreBtn");
+
+  // Fungsi untuk cek apakah produk lolos filter
+  function productMatchesFilter(productCard: HTMLElement) {
+    const getCurrentFilter = (window as any).getCurrentFilter;
+    if (!getCurrentFilter) return true;
+
+    const { filter, search } = getCurrentFilter();
+    const productName = productCard.dataset.name?.toLowerCase() || "";
+    const productTag = productCard.dataset.tag?.toLowerCase() || "";
+
+    const matchesSearch = productName.includes(search.toLowerCase());
+    const matchesFilter = filter === "semua" || productTag === filter;
+
+    return matchesSearch && matchesFilter;
+  }
+
+  // Fungsi untuk update tampilan produk
+  function updateProductDisplay() {
+    let visibleCount = 0;
+    let filteredIndex = 0;
+
+    productItems.forEach((item) => {
+      const itemElement = item as HTMLElement;
+      const productCard = itemElement.querySelector(
+        ".product-card"
+      ) as HTMLElement;
+
+      if (!productCard) return;
+
+      // Cek apakah produk lolos filter
+      const matchesFilter = productMatchesFilter(productCard);
+
+      if (matchesFilter) {
+        // Produk lolos filter, cek apakah dalam range pagination
+        if (filteredIndex < currentlyShowing) {
+          itemElement.style.display = "block";
+          productCard.style.display = "block";
+          visibleCount++;
+        } else {
+          itemElement.style.display = "none";
+        }
+        filteredIndex++;
+      } else {
+        // Produk tidak lolos filter
+        itemElement.style.display = "none";
+        productCard.style.display = "none";
+      }
+    });
+
+    // Update visibilitas tombol "Tampilkan Lebih Banyak"
+    updateLoadMoreButton();
+
+    return visibleCount;
+  }
+
+  // Fungsi untuk update tombol "Load More"
+  function updateLoadMoreButton() {
+    if (!loadMoreBtn) return;
+
+    // Hitung berapa banyak item yang lolos filter
+    let filteredCount = 0;
+    productItems.forEach((item) => {
+      const productCard = item.querySelector(".product-card") as HTMLElement;
+      if (productCard && productMatchesFilter(productCard)) {
+        filteredCount++;
+      }
+    });
+
+    // Sembunyikan tombol jika sudah menampilkan semua item yang tersedia
+    if (currentlyShowing >= filteredCount) {
+      loadMoreBtn.style.display = "none";
+    } else {
+      loadMoreBtn.style.display = "flex";
+    }
+  }
+
+  // Event listener untuk tombol "Load More"
+  if (loadMoreBtn) {
+    loadMoreBtn.addEventListener("click", () => {
+      currentlyShowing += ITEMS_PER_PAGE;
+      updateProductDisplay();
+    });
+  }
+
+  // Reset pagination ketika filter berubah
+  function resetPagination() {
+    currentlyShowing = ITEMS_PER_PAGE;
+    updateProductDisplay();
+  }
+
+  // Expose fungsi untuk digunakan oleh komponen lain
+  (window as any).resetPagination = resetPagination;
+  (window as any).updateProductDisplay = updateProductDisplay;
+
+  // Inisialisasi tampilan awal
+  updateProductDisplay();
+</script>
