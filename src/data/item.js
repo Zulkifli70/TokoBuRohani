@@ -34,7 +34,7 @@ export const items = [
   },
   {
     name: "Minyak Goreng",
-    tag: "rumah tangga",
+    tag: "bahan dapur",
     imgSrc:
       "https://lh3.googleusercontent.com/aida-public/AB6AXuAAMUkvN_Uytc1h1D1nstTVlZBlOyNib2ZdSoOcrPXcKGkRAKwf7oPgfIlyU94U51OV3G0O_DOyCTKtFpe69rz6vNWNo8a3l6DPJm37fwG6QI3w_1JYpy9jeZPbMb7WCePaBZDLbIIRVIqpqSxjmV5w0AVkvWiv1U3bdohRMSCR7cXuUYhMaoaJP2SWBG03i73SGj30X_k3QahJ1-_TycZ8hftH1-2oIuWJPWQ9yVCPj0NYRMrGzPfmMZoAXIz0JEXISIFNHrSeKNmK",
     imgAlt: "Minyak Goreng",
@@ -52,5 +52,53 @@ export const items = [
     imgSrc:
       "https://lh3.googleusercontent.com/aida-public/AB6AXuDCtI6gy7IDCyWVZiH1dp7cbG1Z4wO_ICOUa9sekbUT1TwIWFEU1EymGJT0dtgSEt5KvuqZxE0iT8bTJSR7Q3wVRfWyJFYV4YCJT92bAiJaZHttFgLB_yoaU53D-WJpK05rVKIfVX-Hxvps0WGdeYscGw5SCWJUTv8zYeIRNexjRbjberHKqnH3d3FZ8w_mB3rOWzDkBx4z7d6b0lZqEoniXHI2Z3ouMGJ9SkZw78NS50FyFkXrKeQ33bwrOZSRKNlCs91zNCLOg1-5",
     imgAlt: "Teh Celup",
+  },
+  {
+    name: "Mie Instan",
+    tag: "Makanan",
+    imgSrc: "",
+    imgAlt: "Mie Instan",
+  },
+  {
+    name: "Penyedap Rasa",
+    tag: "bumbu",
+    imgSrc: "",
+    imgAlt: "penyedap rasa",
+  },
+  {
+    name: "Oreo",
+    tag: "jajanan",
+    imgSrc: "",
+    imgAlt: "oreo",
+  },
+  {
+    name: "Wafer",
+    tag: "jajanan",
+    imgSrc: "",
+    imgAlt: "Wafer",
+  },
+  {
+    name: "Sampo",
+    tag: "kebutuhan rumah",
+    imgSrc: "",
+    imgAlt: "sampo",
+  },
+  {
+    name: "Sabun",
+    tag: "kebutuhan rumah",
+    imgSrc: "",
+    imgAlt: "sabun",
+  },
+  {
+    name: "Telur",
+    tag: "bahan dapur",
+    imgSrc: "",
+    imgAlt: "Telur",
+  },
+  {
+    name: "Biskuit",
+    tag: "jajanan",
+    imgSrc: "",
+    imgAlt: "biskuit",
   },
 ];
