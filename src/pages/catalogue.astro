@@ -71,7 +71,7 @@ import ProductGrid from "../components/catalogue/ProductGrid.astro";
     productItems.forEach((item) => {
       const itemElement = item as HTMLElement;
       const productCard = itemElement.querySelector(
-        ".product-card"
+        ".product-card",
       ) as HTMLElement;
 
       if (!productCard) return;
