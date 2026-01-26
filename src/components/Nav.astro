@@ -1,9 +1,42 @@
 ---
+// Ambil URL path saat ini
+const { pathname } = Astro.url;
 
+// Fungsi helper untuk cek apakah link aktif
+function isActive(path: string) {
+  if (path === "/") {
+    return pathname === path;
+  }
+  return pathname.startsWith(path);
+}
 ---
 
 <nav class="hidden md:flex gap-8">
-  <a class="nav-link" href="/about">Tentang Kami</a>
-  <a class="nav-link" href="/catalogue">Katalog</a>
-  <a class="nav-link" href="/location">Lokasi</a>
+  <a
+    class:list={[
+      "nav-link",
+      { "nav-link-active": isActive("/") && pathname === "/" },
+    ]}
+    href="/"
+  >
+    Beranda
+  </a>
+  <a
+    class:list={["nav-link", { "nav-link-active": isActive("/about") }]}
+    href="/about"
+  >
+    Tentang Kami
+  </a>
+  <a
+    class:list={["nav-link", { "nav-link-active": isActive("/catalogue") }]}
+    href="/catalogue"
+  >
+    Katalog
+  </a>
+  <a
+    class:list={["nav-link", { "nav-link-active": isActive("/location") }]}
+    href="/location"
+  >
+    Lokasi
+  </a>
 </nav>

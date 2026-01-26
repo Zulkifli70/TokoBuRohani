@@ -70,3 +70,7 @@
 .nav-link {
   @apply text-text-primary text-sm font-semibold hover:text-primary-500 transition-colors;
 }
+
+.nav-link-active {
+  @apply text-primary-600 font-bold border-b-2 border-primary-500;
+}
