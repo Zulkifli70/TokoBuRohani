@@ -1,6 +1,8 @@
 ---
 import ProductCard from "./ProductCard.astro";
-import { items } from "../../data/item";
+import { getProducts } from "../../lib/mongodb";
+
+const items = await getProducts();
 ---
 
 <div>
