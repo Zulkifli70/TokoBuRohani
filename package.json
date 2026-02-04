@@ -9,9 +9,11 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/node": "^9.1.1",
     "@tailwindcss/vite": "^4.1.18",
     "astro": "^5.16.9",
     "dotenv": "^17.2.3",
+    "mongodb": "^6.15.0",
     "tailwindcss": "^4.1.18"
   }
 }
