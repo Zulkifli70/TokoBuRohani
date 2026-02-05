@@ -1,4 +1,5 @@
 import { MongoClient } from "mongodb";
+import { productSchema } from "./productSchema.js";
 
 const uri = import.meta.env.MONGODB_URI;
 if (!uri) {
@@ -33,8 +34,15 @@ export async function getCollection() {
 
 export async function getProducts() {
   const collection = await getCollection();
-  return collection
+  const rows = await collection
     .find({})
     .project({ _id: 0, name: 1, tag: 1, imgSrc: 1, imgAlt: 1 })
     .toArray();
+
+  return rows
+    .map((row) => {
+      const parsed = productSchema.safeParse(row);
+      return parsed.success ? parsed.data : null;
+    })
+    .filter(Boolean);
 }
