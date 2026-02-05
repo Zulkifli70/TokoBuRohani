@@ -10,7 +10,7 @@
     "seed": "node src/scripts/seed.mjs"
   },
   "dependencies": {
-    "@astrojs/node": "^9.1.1",
+    "@astrojs/netlify": "^6.5.2",
     "@tailwindcss/vite": "^4.1.18",
     "astro": "^5.16.9",
     "dotenv": "^17.2.3",
